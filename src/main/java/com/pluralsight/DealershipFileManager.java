@@ -3,9 +3,8 @@ package com.pluralsight;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
-public class DealershipFIleManager {
+public class DealershipFileManager {
 
         private String csvFile = "inventory.csv";
 
