@@ -29,86 +29,85 @@ public class Dealership {
         return this.inventory;
     }
 
+    // Removes a vehicle based on VIN match
     public void removeVehicle(Vehicle vehicle) {
-        //take the vehicle passed in out of the inventory list
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).getVin() == vehicle.getVin()) {
+                inventory.remove(i); // stop after removing first match
+                break;
+            }
+        }
     }
 
+    // Returns vehicles between the given price range
     public ArrayList<Vehicle> getVehiclesByPrice(BigDecimal min, BigDecimal max) {
-
-        //loop over inventory and return a list of vehicles that match the price range
-
-        //start a new list for the filtered cars
-
-        //loop over inventory and add matching cards to filtered list
-
-        //return the list
-
-        return null;
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getPrice().compareTo(min) >= 0 && vehicle.getPrice().compareTo(max) <= 0) {
+                results.add(vehicle);
+            }
+        }
+        return results;
     }
 
+    // Returns vehicles that match both make and model
     public ArrayList<Vehicle> getVehiclesByMakeModel(String make, String model) {
-
-        //loop over inventory and return a list of vehicles that match the make and model
-
-        //start a new list for the filtered cars
-
-        //loop over inventory and add matching cards to filtered list
-
-        //return the list
-
-        return null;
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model)) {
+                results.add(vehicle);
+            }
+        }
+        return results;
     }
 
-    public ArrayList<Vehicle> getVehiclesByYear(int min, int Max) {
-
-        //loop over inventory and return a list of vehicles that match the year range
-
-        //start a new list for the filtered cars
-
-        //loop over inventory and add matching cards to filtered list
-
-        //return the list
-
-        return null;
+    // Returns vehicles within the year range provided
+    public ArrayList<Vehicle> getVehiclesByYear(int minYear, int maxYear) {
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getYear() >= minYear && vehicle.getYear() <= maxYear) {
+                results.add(vehicle);
+            }
+        }
+        return results;
     }
 
+    // Returns vehicles matching the specified color
     public ArrayList<Vehicle> getVehiclesByColor(String color) {
-
-        //loop over inventory and return a list of vehicles that match the make and model
-
-        //start a new list for the filtered cars
-
-        //loop over inventory and add matching cards to filtered list
-
-        //return the list
-
-        return null;
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getColor().equalsIgnoreCase(color)) {
+                results.add(vehicle);
+            }
+        }
+        return results;
     }
 
-    public ArrayList<Vehicle> getVehiclesByMileage(int min, int max) {
-
-        //loop over inventory and return a list of vehicles that match the min and max mileage
-
-        //start a new list for the filtered cars
-
-        //loop over inventory and add matching cards to filtered list
-
-        //return the list
-
-        return null;
+    // Returns vehicles within the specified mileage range
+    public ArrayList<Vehicle> getVehiclesByMileage(int minMileage, int maxMileage) {
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getOdometer() >= minMileage && vehicle.getOdometer() <= maxMileage) {
+                results.add(vehicle);
+            }
+        }
+        return results;
     }
 
+    // Returns vehicles that match the vehicle type
     public ArrayList<Vehicle> getVehiclesByType(String type) {
-
-        //loop over inventory and return a list of vehicles that match the type
-
-        //start a new list for the filtered cars
-
-        //loop over inventory and add matching cards to filtered list
-
-        //return the list
-
-        return null;
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getVehicleType().equalsIgnoreCase(type)) {
+                results.add(vehicle);
+            }
+        }
+        return results;
     }
+
+    // Getters for dealership name, address, and phone
+    public String getName() { return name; }
+    public String getAddress() { return address; }
+    public String getPhone() { return phone; }
 
 }

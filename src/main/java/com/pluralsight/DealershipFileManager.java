@@ -1,8 +1,8 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class DealershipFileManager {
 
@@ -66,7 +66,33 @@ public class DealershipFileManager {
         }
 
         public void saveDealership(Dealership dealership){
+            try {
+                // Open the file for writing (overwrites existing file)
+                BufferedWriter fileWriter = new BufferedWriter(new FileWriter(csvFile));
 
+                // Write dealership header info (first line)
+                fileWriter.write(dealership.getName() + "|" + dealership.getAddress() + "|" + dealership.getPhone());
+                fileWriter.newLine();
+
+                // Write one line for each vehicle
+                ArrayList<Vehicle> inventory = dealership.getAllVehicles();
+                for (Vehicle vehicle : inventory) {
+                    String line = vehicle.getVin() + "|" +
+                            vehicle.getYear() + "|" +
+                            vehicle.getMake() + "|" +
+                            vehicle.getModel() + "|" +
+                            vehicle.getVehicleType() + "|" +
+                            vehicle.getColor() + "|" +
+                            vehicle.getOdometer() + "|" +
+                            vehicle.getPrice();
+                    fileWriter.write(line);
+                    fileWriter.newLine();
+                }
+
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("Error writing dealership file: " + e.getMessage());
+            }
         }
 
 }
