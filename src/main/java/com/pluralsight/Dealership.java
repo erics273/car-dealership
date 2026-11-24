@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Dealership {
 
@@ -73,36 +74,45 @@ public class Dealership {
     }
 
     // Returns vehicles matching the specified color
-    public ArrayList<Vehicle> getVehiclesByColor(String color) {
-        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
-        for (Vehicle vehicle : inventory) {
-            if (vehicle.getColor().equalsIgnoreCase(color)) {
-                results.add(vehicle);
-            }
-        }
+    public List<Vehicle> getVehiclesByColor(String color) {
+//        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
+//        for (Vehicle vehicle : inventory) {
+//            if (vehicle.getColor().equalsIgnoreCase(color)) {
+//                results.add(vehicle);
+//            }
+//        }
+
+        List<Vehicle> results = inventory.stream()
+                .filter(vehicle -> vehicle.getColor().equalsIgnoreCase(color))
+                .toList();
+
         return results;
     }
 
     // Returns vehicles within the specified mileage range
-    public ArrayList<Vehicle> getVehiclesByMileage(int minMileage, int maxMileage) {
-        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
-        for (Vehicle vehicle : inventory) {
-            if (vehicle.getOdometer() >= minMileage && vehicle.getOdometer() <= maxMileage) {
-                results.add(vehicle);
-            }
-        }
-        return results;
+    public List<Vehicle> getVehiclesByMileage(int minMileage, int maxMileage) {
+//        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
+//        for (Vehicle vehicle : inventory) {
+//            if (vehicle.getOdometer() >= minMileage && vehicle.getOdometer() <= maxMileage) {
+//                results.add(vehicle);
+//            }
+//        }
+        return inventory.stream()
+                .filter(vehicle -> vehicle.getOdometer() >= minMileage && vehicle.getOdometer() <= maxMileage)
+                .toList();
     }
 
     // Returns vehicles that match the vehicle type
-    public ArrayList<Vehicle> getVehiclesByType(String type) {
-        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
-        for (Vehicle vehicle : inventory) {
-            if (vehicle.getVehicleType().equalsIgnoreCase(type)) {
-                results.add(vehicle);
-            }
-        }
-        return results;
+    public List<Vehicle> getVehiclesByType(String type) {
+//        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
+//        for (Vehicle vehicle : inventory) {
+//            if (vehicle.getVehicleType().equalsIgnoreCase(type)) {
+//                results.add(vehicle);
+//            }
+//        }
+        return inventory.stream()
+                .filter(vehicle -> vehicle.getVehicleType().equalsIgnoreCase(type))
+                .toList();
     }
 
     // Getters for dealership name, address, and phone

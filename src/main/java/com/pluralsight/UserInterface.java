@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -114,7 +115,7 @@ public class UserInterface {
         System.out.print("Enter color: ");
         String color = scanner.nextLine();
 
-        ArrayList<Vehicle> results = dealership.getVehiclesByColor(color);
+        List<Vehicle> results = dealership.getVehiclesByColor(color);
         displayVehicles(results);
     }
 
@@ -126,7 +127,7 @@ public class UserInterface {
         System.out.print("Enter maximum mileage: ");
         int max = scanner.nextInt();
 
-        ArrayList<Vehicle> results = dealership.getVehiclesByMileage(min, max);
+        List<Vehicle> results = dealership.getVehiclesByMileage(min, max);
         displayVehicles(results);
     }
 
@@ -136,7 +137,7 @@ public class UserInterface {
         System.out.print("Enter vehicle type: ");
         String type = scanner.nextLine();
 
-        ArrayList<Vehicle> results = dealership.getVehiclesByType(type);
+        List<Vehicle> results = dealership.getVehiclesByType(type);
         displayVehicles(results);
     }
 
@@ -225,7 +226,7 @@ public class UserInterface {
 
     }
 
-    private void displayVehicles(ArrayList<Vehicle> vehicles){
+    private void displayVehicles(List<Vehicle> vehicles){
 
         //looper over the list and print it to the screen
         for(Vehicle vehicle : vehicles){
